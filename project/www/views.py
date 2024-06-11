@@ -1,22 +1,13 @@
 from django.shortcuts import render,redirect,get_object_or_404
 
-from .forms import PlaceForm,TripForm,FavoriteForm
+from .forms import PlaceForm,TripForm
 
 from .models import Place,Trip,Favorite
 
 def index(request):
   
     return render(request, 'www/index.html', {})
-
-def places(request):
-    places = Place.objects.all()
-    return render(request, 'www/places.html', {'places':places})
-
-def places_detail(request, place_id):
-    place = get_object_or_404(Place, id=place_id)
-    trips = Trip.objects.filter(place=place)
-    return render(request, 'www/places_detail.html', {'place': place, 'trips': trips})
-
+    
 
 def add_place(request):
     if request.method == 'POST':
@@ -30,6 +21,26 @@ def add_place(request):
     return render(request, 'www/add_place.html', {'form':form})
 
 
+def places(request):
+    places = Place.objects.all()
+    return render(request, 'www/places.html', {'places':places})
+
+def places_detail(request, place_id):
+    place = get_object_or_404(Place, id=place_id)
+    trips = Trip.objects.filter(place=place)
+    return render(request, 'www/places_detail.html', {'place': place, 'trips': trips})
+
+
+def planing(request):
+    if request.method == 'POST':
+        form = TripForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('trips')
+    else:
+        form = TripForm()
+    return render(request, 'www/planing.html', {'form':form})
+
 
 def trips(request):
     trips = Trip.objects.all()
@@ -39,20 +50,12 @@ def trips(request):
        
         if not Favorite.objects.filter(trip=trip).exists():
             Favorite.objects.create(trip=trip)
-        return redirect('trips')
+        return redirect('favorite')
     else:
         return render(request, 'www/trips.html', {'trips': trips})
 
 
-def planing(request):
-    if request.method == 'POST':
-        form = TripForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('planing')
-    else:
-        form = TripForm()
-    return render(request, 'www/planing.html', {'form':form})
+
 
 def favorite(request):
     favorite_trips = Favorite.objects.all()
@@ -63,3 +66,5 @@ def favorite(request):
         return redirect('favorite')
     else:
         return render(request, 'www/favorite.html', {'favorite_trips': favorite_trips})
+    
+

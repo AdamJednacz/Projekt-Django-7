@@ -17,7 +17,7 @@ class TripForm(forms.ModelForm):
     name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Name'}))
     price = forms.CharField(max_length=100, widget=forms.NumberInput(attrs={'placeholder': 'Price'}))
     discription = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Discription'}))
-    place = forms.ModelChoiceField(queryset=Place.objects.all(), widget=forms.Select(attrs={'placeholder': 'Select a Category'}))
+    place = forms.ModelChoiceField(queryset=Place.objects.all(), widget=forms.Select(attrs={'placeholder': 'Select a Place'}))
 
     class Meta:
         model = Trip

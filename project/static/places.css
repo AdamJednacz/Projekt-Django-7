@@ -1,7 +1,6 @@
 .places{
     overflow: auto;
     height: 80vh;
- 
     display: flex;
     flex-direction: column;
 }

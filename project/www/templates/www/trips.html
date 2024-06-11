@@ -27,7 +27,6 @@
                 {% for trip in trips %}
                 <div class="trip">
                     <img src="{{ trip.place.photo.url }}" alt="{{ trip.place.name }}" >
-                    
                     <p>Name: {{ trip.name }}</p>
                     <p>Price: {{ trip.price }} PLN</p>
                     <p>Discription: {{ trip.discription }}</p>
@@ -38,8 +37,6 @@
                         <button type="submit">Add to Favorite</button>
                     </form>
                 </div>
-
-
                 {% endfor %}
             </div>
         </div>

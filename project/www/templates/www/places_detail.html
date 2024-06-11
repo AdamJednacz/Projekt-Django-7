@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'reset.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'trips.css' %}">
+    <title>{{place.name}}</title>
 </head>
 <body>
     <header>
@@ -22,16 +23,13 @@
     <main>
         <div class="container">
             {% for trip in trips %}
-            <div class="trip">
-                <img src="{{ trip.place.photo.url }}" alt="{{ trip.place.name }}" >
-                
-                <p>Name: {{ trip.name }}</p>
-                <p>Price: {{ trip.price }}</p>
-                <p>Discription: {{ trip.discription }}</p>
-                <p>Place: {{ trip.place }}</p>
-            </div>
-
-
+                <div class="trip">
+                    <img src="{{ trip.place.photo.url }}" alt="{{ trip.place.name }}" >
+                    <p>Name: {{ trip.name }}</p>
+                    <p>Price: {{ trip.price }} PLN</p>
+                    <p>Discription: {{ trip.discription }}</p>
+                    <p>Place: {{ trip.place }}</p>
+                </div>
             {% endfor %}
         </div>
     </main>
