@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+    <title>Zaplanuj Wycieczke</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+          <a class="link" href="{% url 'index' %}"><button><span>Home</span></button></a>
+          <a class="link" href="{% url 'add_place' %}"><button><span>Add Place</span></button></a>
+          <a class="link" href="{% url 'places' %}"><button><span>Places</span></button></a>
+          <a class="link" href="{% url 'planing' %}"><button><span>Planing Trips</span></button></a>
+          <a class="link" href="{% url 'trips' %}"><button><span>Trips</span></button></a>
+          <a class="link" href="{% url 'favorite' %}"><button><span>Favorite</span></button></a>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.name }}
+                    {{ form.price }}
+                    {{ form.discription }}
+                    {{ form.place }}
+                <button type="submit">Add Trip</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+    <link rel="stylesheet" href="{% static 'trips.css' %}">
+    <title>Zaplanuj Wycieczke</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+          <a class="link" href="{% url 'index' %}"><button><span>Home</span></button></a>
+          <a class="link" href="{% url 'add_place' %}"><button><span>Add Place</span></button></a>
+          <a class="link" href="{% url 'places' %}"><button><span>Places</span></button></a>
+          <a class="link" href="{% url 'planing' %}"><button><span>Planing Trips</span></button></a>
+          <a class="link" href="{% url 'trips' %}"><button><span>Trips</span></button></a>
+          <a class="link" href="{% url 'favorite' %}"><button><span>Favorite</span></button></a>
+         
+        </div>
+    </header>
+    <main>
+        <div class="contiainer">
+            <div class="trips">
+                {% for trip in trips %}
+                <div class="trip">
+                    <img src="{{ trip.place.photo.url }}" alt="{{ trip.place.name }}" >
+                    
+                    <p>Name: {{ trip.name }}</p>
+                    <p>Price: {{ trip.price }} PLN</p>
+                    <p>Discription: {{ trip.discription }}</p>
+                    <p>Place: {{ trip.place }}</p>
+                    <form method="post" >
+                        {% csrf_token %}
+                        <input type="hidden" name="trip" value="{{ trip.id }}">
+                        <button type="submit">Add to Favorite</button>
+                    </form>
+                </div>
+
+
+                {% endfor %}
+            </div>
+        </div>
+    </mian>
+</body>
+</html>

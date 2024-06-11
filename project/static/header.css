@@ -1,0 +1,10 @@
+header{
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.home{
+    height: 100vh;
+    padding: 0;
+}
